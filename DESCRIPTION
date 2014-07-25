@@ -1,0 +1,10 @@
+Package: AMPRIL
+Type: Package
+Title: AMPRIL helpers
+Version: 1.0
+Date: 2014-06-11
+Author: JRK
+Maintainer: JRK
+     <maintainer@gmx.de>
+Description: AMPRIL helper fuctions
+License: GPL (>=2)
