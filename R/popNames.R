@@ -1,16 +1,10 @@
 
-
-
 strrev <- function(x) sapply(lapply(strsplit(x, NULL), rev), paste, collapse="")
-
-
 
 #' @title Sub-sub-population names
 #' @param names names of individuals
 #' @export
 sspop.names <- function(names) substring(names, 1, 2)
-
-
 
 #' @title Sub-population names
 #' @param names names of individuals
