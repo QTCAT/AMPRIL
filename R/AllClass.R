@@ -1,8 +1,6 @@
-
 #' @title Class "ibdData" for a IBD-block matrix (S4 class)
-#' @name ibdData-class
-#' @docType class
 #' @description A S4 class for a SNP matrix. Storing SNP information using a 
+#' 
 #' byte-level (raw) storage scheme jointly with positions.
 #' @slot ibdData A matrix of IBD-block stored in type 'raw'.
 #' @slot indivNames A vector of individual names.
@@ -11,6 +9,7 @@
 #' @slot position A matrix with three rows. The first row contains the 
 #' chromosomes, the second row contains the start positions of a block, and the 
 #' third row contains the end population of a block.
+#' 
 #' @importFrom methods setClass
 #' @export
 setClass(Class="ibdData",

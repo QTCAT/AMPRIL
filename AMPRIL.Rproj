@@ -13,5 +13,5 @@ RnwWeave: knitr
 LaTeX: pdfLaTeX
 
 BuildType: Package
-PackageInstallArgs: --no-multiarch --with-keep.source --byte-compile  -l ~/R/x86_64-unknown-linux-gnu-library/test
+PackageInstallArgs: --no-multiarch --byte-compile
 PackageRoxygenize: rd,collate,namespace

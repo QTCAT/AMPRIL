@@ -1,5 +1,6 @@
-
 #' @title read snp data as ibdData object
+#' @description read snp data as ibdData object
+#' 
 #' @param file the name of the file which the data are to be read from.
 #' @param header a logical value indicating whether the file contains the 
 #' names of the variables as its first line
@@ -14,6 +15,7 @@
 #' @param na.strings a character vector of strings which are to be interpreted 
 #' as NA values. 
 #' @param nrows integer: the maximum number of rows to read in.
+#' 
 #' @importFrom methods new
 #' @export
 read.ibdData <- function(file, header=TRUE, sep=" ", quote='"', 
@@ -39,8 +41,10 @@ read.ibdData <- function(file, header=TRUE, sep=" ", quote='"',
   out
 } # read.ibdData
 
+
 #' @title Sub ibdData
-#' @docType methods
+#' @description ...
+#' 
 #' @param x ibdData object
 #' @param i indices specifying elements to extract or replace. Indices are n
 #' umeric or character vectors
@@ -48,6 +52,7 @@ read.ibdData <- function(file, header=TRUE, sep=" ", quote='"',
 #' numeric or character vectors
 #' @param ... not implemented
 #' @param drop not implemented
+#' 
 #' @importFrom methods setMethod signature new
 #' @export
 setMethod("[", signature(x="ibdData", i="ANY", j="ANY", drop="missing"),
@@ -74,9 +79,11 @@ setMethod("[", signature(x="ibdData", i="ANY", j="ANY", drop="missing"),
 ) # `[`
 
 #' @title ibdData as matrix
-#' @docType methods
+#' @description ...
+#' 
 #' @param x ibdData object
 #' @param ... not implemented
+#' 
 #' @importFrom methods setMethod signature
 #' @export
 setMethod("as.matrix", signature(x="ibdData"),
@@ -91,11 +98,12 @@ setMethod("as.matrix", signature(x="ibdData"),
           }
 ) # as.matrix
 
+
 #' @title Get dimnames
 #' @description Retrieve or set the dimnames of an object.
-#' @docType methods
+#' 
 #' @param x ibdData object
-#' @details ...
+#' 
 #' @importFrom methods setMethod signature
 #' @export
 setMethod("dimnames", signature(x="ibdData"),
@@ -105,31 +113,36 @@ setMethod("dimnames", signature(x="ibdData"),
           }
 ) # dimnames
 
-#'  @title Assign dimnames
-#'  @description Retrieve or set the dimnames of an object.
-#'  @docType methods
-#'  @param x ibdData object
-#'  @param value  List of names
-#'  @details ...
-#'  @importFrom methods setMethod signature
-#' @export
-setMethod("dimnames<-", signature(x="ibdData", value="list"),
-          function (x, value) {
-            d <- dim(x)
-            if (!is.list(value) || length(value) != 2L ||
-                  !(is.null(v1 <- value[[1L]]) || length(v1) == d[1L]) ||
-                  !(is.null(v2 <- value[[2L]]) || length(v2) == d[2L]))
-              stop(gettextf("invalid dimnames given for %s object", 
-                            dQuote(class(x))), domain=NA)
-            if(!is.null(v1)) x@indivNames <- as.character(v1)
-            if(!is.null(v2)) x@lociNames <- as.character(v2)
-            x
-          }
-) # dimnames
+
+# #'  @title Assign dimnames
+# #'  @description Retrieve or set the dimnames of an object.
+# #'
+# #'  @param x ibdData object
+# #'  @param value  List of names
+# #'  @details ...
+# #'
+# #'  @importFrom methods setMethod signature
+# #' @export
+# setMethod("dimnames<-", signature(x="ibdData", value="list"),
+#           function(x, value) {
+#             d <- dim(x)
+#             if (!is.list(value) || length(value) != 2L ||
+#                   !(is.null(v1 <- value[[1L]]) || length(v1) == d[1L]) ||
+#                   !(is.null(v2 <- value[[2L]]) || length(v2) == d[2L]))
+#               stop(gettextf("invalid dimnames given for %s object",
+#                             dQuote(class(x))), domain=NA)
+#             if(!is.null(v1)) x@indivNames <- as.character(v1)
+#             if(!is.null(v2)) x@lociNames <- as.character(v2)
+#             x
+#           }
+# ) # dimnames
+
 
 #' @title Get dim
-#' @docType methods
+#' @description ..
+#' 
 #' @param x ibdData object
+#' 
 #' @importFrom methods setMethod signature
 #' @export
 setMethod("dim", signature(x="ibdData"),
@@ -139,8 +152,12 @@ setMethod("dim", signature(x="ibdData"),
           }
 ) # dim
 
+
 #' @title Frequency of NAs in ibdData
+#' @description ...
+#' 
 #' @param object ibdData object
+#' 
 #' @export
 na.freq <- function (object) {
   temp <- apply(object@ibdData, 2, function(x){sum(x == 0x00)})
@@ -149,8 +166,12 @@ na.freq <- function (object) {
   out
 } # "na.freq"
 
+
 #' @title Get position from ibdData
+#' @description ...
+#' 
 #' @param object ibdData object
+#' 
 #' @export
 getPos <- function (object) {
   out <- object@position
@@ -162,8 +183,12 @@ getPos <- function (object) {
   out
 } # getPos
 
+
 #' @title Allele frequency
+#' @description ...
+#' 
 #' @param x ibdData object
+#' 
 #' @export
 allele.freq <- function (x) {
   alleles <- unique(unlist(strsplit(x@alleleLabels, "")))
@@ -178,9 +203,13 @@ allele.freq <- function (x) {
   out
 } # allele.freq
 
+
 #' @title Heterozygosity
+#' @description ...
+#' 
 #' @param x ibdData object
 #' @param dim interger for dimention
+#' 
 #' @export
 het.freq <- function (x, dim=c(1, 2)) {
   dim <- dim[1]
