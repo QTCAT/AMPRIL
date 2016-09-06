@@ -10,6 +10,6 @@ na.freq(object)
 \item{object}{ibdData object}
 }
 \description{
-...
+Frequency of NAs in ibdData
 }
 

@@ -12,6 +12,6 @@ het.freq(x, dim = c(1, 2))
 \item{dim}{interger for dimention}
 }
 \description{
-...
+Heterozygosity
 }
 

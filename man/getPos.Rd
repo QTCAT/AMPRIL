@@ -10,6 +10,6 @@ getPos(object)
 \item{object}{ibdData object}
 }
 \description{
-...
+Get position from ibdData
 }
 

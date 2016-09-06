@@ -36,3 +36,16 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
+// similarityIBD
+NumericMatrix similarityIBD(RawMatrix x, NumericVector pWeight, CharacterVector labels);
+RcppExport SEXP AMPRIL_similarityIBD(SEXP xSEXP, SEXP pWeightSEXP, SEXP labelsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< RawMatrix >::type x(xSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type pWeight(pWeightSEXP);
+    Rcpp::traits::input_parameter< CharacterVector >::type labels(labelsSEXP);
+    __result = Rcpp::wrap(similarityIBD(x, pWeight, labels));
+    return __result;
+END_RCPP
+}

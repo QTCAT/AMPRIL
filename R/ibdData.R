@@ -39,11 +39,11 @@ read.ibdData <- function(file, header=TRUE, sep=" ", quote='"',
              alleleLabels=temp$alleleLabels,
              position=temp$position)
   out
-} # read.ibdData
+}
 
 
 #' @title Sub ibdData
-#' @description ...
+#' @description Sub ibdData
 #' 
 #' @param x ibdData object
 #' @param i indices specifying elements to extract or replace. Indices are n
@@ -76,10 +76,11 @@ setMethod("[", signature(x="ibdData", i="ANY", j="ANY", drop="missing"),
                                 else x@position[, j, drop=FALSE])
             out
           }
-) # `[`
+)
+
 
 #' @title ibdData as matrix
-#' @description ...
+#' @description ibdData as matrix
 #' 
 #' @param x ibdData object
 #' @param ... not implemented
@@ -111,7 +112,7 @@ setMethod("dimnames", signature(x="ibdData"),
             out <- list(x@indivNames, x@lociNames)
             out
           }
-) # dimnames
+)
 
 
 # #'  @title Assign dimnames
@@ -135,11 +136,11 @@ setMethod("dimnames", signature(x="ibdData"),
 #             if(!is.null(v2)) x@lociNames <- as.character(v2)
 #             x
 #           }
-# ) # dimnames
+# ) 
 
 
 #' @title Get dim
-#' @description ..
+#' @description Get dim
 #' 
 #' @param x ibdData object
 #' 
@@ -150,11 +151,11 @@ setMethod("dim", signature(x="ibdData"),
             out <- dim(x@ibdData)
             out
           }
-) # dim
+)
 
 
 #' @title Frequency of NAs in ibdData
-#' @description ...
+#' @description Frequency of NAs in ibdData
 #' 
 #' @param object ibdData object
 #' 
@@ -164,11 +165,11 @@ na.freq <- function (object) {
   out <- temp/nrow(object@ibdData)
   names(out) <- object@lociNames
   out
-} # "na.freq"
+}
 
 
 #' @title Get position from ibdData
-#' @description ...
+#' @description Get position from ibdData
 #' 
 #' @param object ibdData object
 #' 
@@ -181,11 +182,11 @@ getPos <- function (object) {
     cat("No position information available")
   }
   out
-} # getPos
+}
 
 
 #' @title Allele frequency
-#' @description ...
+#' @description Allele frequency
 #' 
 #' @param x ibdData object
 #' 
@@ -201,11 +202,11 @@ allele.freq <- function (x) {
   out <- out/(2*nrow(x))
   colnames(out) <- colnames(x)
   out
-} # allele.freq
+}
 
 
 #' @title Heterozygosity
-#' @description ...
+#' @description Heterozygosity
 #' 
 #' @param x ibdData object
 #' @param dim interger for dimention
@@ -230,4 +231,38 @@ het.freq <- function (x, dim=c(1, 2)) {
     names(hetFreq) <- x@lociNames
   }
   hetFreq
-} # het.freq
+}
+
+
+#' @title IBD subseting by position
+#' @description IBD subseting by position
+#' 
+#' @param x ibdData object
+#' @param chr interger vector for chromosomes
+#' @param pos interger vector for positions at chr
+#' 
+#' @export
+subsetPos <- function(x, chr, pos) {
+  allpos <- getPos(x)
+  inx <- sapply(seq_along(chr), function(i, chr, pos, allpos) {
+    inxchr <- findInterval(pos[i], allpos[3, allpos[1, ] == chr[i]]) + 1
+    sum(allpos[1, ] < chr[i]) + inxchr
+  }, chr, pos, allpos)
+  x[, sort(inx)]
+}
+
+
+#' @title IBD similarity
+#' @description IBD similarity
+#' 
+#' @param x ibdData object
+#' 
+#' @export
+grm.ibd <- function(x) {
+  stopifnot(is(x, "ibdData"))
+  p.frac <- x@position[3L, ] - x@position[2L, ]
+  out <- similarityIBD(x@ibdData, p.frac, x@alleleLabels)
+  diag(out) <- (2L - het.freq(x, dim = 1L))/2L
+  colnames(out) <- rownames(out) <- x@indivNames
+  out
+}

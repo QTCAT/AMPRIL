@@ -9,3 +9,7 @@ read_ibdData <- function(file, header, sep, quote, rowNames, nPos, na_str, nrows
     .Call('AMPRIL_read_ibdData', PACKAGE = 'AMPRIL', file, header, sep, quote, rowNames, nPos, na_str, nrows)
 }
 
+similarityIBD <- function(x, pWeight, labels) {
+    .Call('AMPRIL_similarityIBD', PACKAGE = 'AMPRIL', x, pWeight, labels)
+}
+

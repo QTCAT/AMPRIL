@@ -13,6 +13,6 @@
 \item{...}{not implemented}
 }
 \description{
-...
+ibdData as matrix
 }
 

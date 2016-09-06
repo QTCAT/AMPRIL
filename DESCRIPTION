@@ -1,7 +1,7 @@
 Package: AMPRIL
 Type: Package
 Title: AMPRIL helpers
-Version: 0.0-2
+Version: 0.0-3
 Author: Jonas klasen
 Maintainer: Jonas Klasen <maintainer@gmx.de>
 Description: AMPRIL helper fuctions.
@@ -9,6 +9,7 @@ Depends:
     R (>= 3.0.0)
 Imports:
     methods,
+    stats,
     Rcpp (>= 0.11.0)
 LinkingTo: Rcpp
 License: GPL (>= 2)

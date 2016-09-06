@@ -21,6 +21,6 @@ numeric or character vectors}
 \item{drop}{not implemented}
 }
 \description{
-...
+Sub ibdData
 }
 

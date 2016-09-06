@@ -11,6 +11,6 @@
 \item{x}{ibdData object}
 }
 \description{
-..
+Get dim
 }
 
