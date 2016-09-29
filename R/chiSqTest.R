@@ -9,16 +9,12 @@
 chiSqTest.ibd <- function(x, spop = rep(1, nrow(x))) {
   stopifnot(is(x, "ibdData"))
   spop <- as.character(spop)
-#   label.inx <- sort(as.integer(unique(as.vector(x@ibdData))))
-#   npar <- length(unique(unlist(strsplit(x@alleleLabels[label.inx], ""))))
   l.list <- lapply(unique(spop), function(i, x) which(i == x), x = spop)
   chr.all <- unique(x@position[1, ])
   if (length(chr.all) == 1L) 
     stop("data are only from one chromosome")
-  n.chrMin <- sum(min(chr.all) == x@position[1, ])
-  n.chrMax <- sum(max(chr.all) == x@position[1, ])
-  out <- matrix(NA, ncol(x) - n.chrMax, ncol(x) - n.chrMin)
-  for (chr in chr.all[-length(chr.all)]) {
+  out <- list()
+  for (chr in chr.all[-length(chr.all)]) { # chr <- 1
     i.inx <- which(chr == x@position[1, ])
     j.inx <- which(chr < x@position[1, ])
     out.i <- list()
@@ -46,12 +42,20 @@ chiSqTest.ibd <- function(x, spop = rep(1, nrow(x))) {
       }
       out.i[[i]] <- unlist(out.j)
     }
-    out[i.inx, j.inx - n.chrMin] <- do.call("rbind", out.i)
+    out.ij <- data.frame(chr1 = rep(x@position[1, i.inx], each = length(j.inx)),
+                         pos1 = rep(x@position[2, i.inx], each = length(j.inx)),
+                         chr2 = rep(x@position[1, j.inx], times = length(i.inx)),
+                         pos2 = rep(x@position[2, j.inx], times = length(i.inx)),
+                         pValues = unlist(out.i))
+    rownames(out.ij) <- paste(rep(colnames(x)[i.inx], each = length(j.inx)), 
+                 rep(colnames(x)[j.inx], times = length(i.inx)), 
+                 sep = ":")
+    out[[chr]] <- out.ij
   }
-  rownames(out) <- colnames(x)[1:nrow(out)]
-  colnames(out) <- colnames(x)[-1:-n.chrMin]
+  out <- do.call("rbind", out)
+  class(out) <- c("epiScan", class(out))
   out
-} # chiSqTest.ibd
+}
 
 
 #' @title Chi square test
