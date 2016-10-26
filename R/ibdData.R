@@ -42,6 +42,53 @@ read.ibdData <- function(file, header=TRUE, sep=" ", quote='"',
 }
 
 
+#' @title Purify loci
+#' @description Purify loci
+#' 
+#' @param x ibdData object
+#' 
+#' @export
+purifyLoci <- function(x) {
+  i <- 1
+  inx <- c() 
+  pos <- c()
+  while (i <= ncol(x)) {
+    if (i == ncol(x)) {
+      inx <- c(inx, i)
+      pos <- cbind(pos, x@position[, i])
+      j <- i + 1
+      break
+    }
+    if (any(x@ibdData[, i] != x@ibdData[, i + 1])) {
+      inx <- c(inx, i)
+      pos <- cbind(pos, x@position[, i])
+      j <- i + 1
+    } else {
+      j <- i + 1
+      while (all(x@ibdData[, i] == x@ibdData[, j + 1])) {
+        j <- j + 1
+        if (j == ncol(x)) {
+          break
+        }
+      }
+      inx <- c(inx, i)
+      pos <- cbind(pos, c(x@position[1:2, i], x@position[3, j]))
+      if (j == ncol(x)) {
+        break
+      }
+    }
+    i <- j
+  }
+  out <- new("ibdData",
+             ibdData = x@ibdData[, inx],
+             indivNames = x@indivNames,
+             lociNames = paste0("loci", 1:length(inx)),
+             alleleLabels = x@alleleLabels,
+             position = pos)
+  out
+}
+
+
 #' @title Sub ibdData
 #' @description Sub ibdData
 #' 
