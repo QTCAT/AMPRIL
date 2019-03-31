@@ -14,4 +14,3 @@ chiSqTest.ibd(x, spop = rep(1, nrow(x)))
 \description{
 Chi square test for IBD sub population data
 }
-

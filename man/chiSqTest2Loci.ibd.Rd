@@ -18,4 +18,3 @@ chiSqTest2Loci.ibd(x, locusI, locusII, spop = rep(1, nrow(x)))
 \description{
 Chi square test for IBD sub population data
 }
-

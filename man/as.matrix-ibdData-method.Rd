@@ -15,4 +15,3 @@
 \description{
 ibdData as matrix
 }
-

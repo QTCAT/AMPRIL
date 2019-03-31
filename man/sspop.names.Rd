@@ -12,4 +12,3 @@ sspop.names(names)
 \description{
 ...
 }
-

@@ -23,4 +23,3 @@ numeric or character vectors}
 \description{
 Sub ibdData
 }
-

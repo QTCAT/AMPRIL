@@ -16,4 +16,3 @@ subsetPos(x, chr, pos)
 \description{
 IBD subseting by position
 }
-

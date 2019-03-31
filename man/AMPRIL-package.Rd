@@ -2,8 +2,8 @@
 % Please edit documentation in R/AMPRILPackage.R
 \docType{package}
 \name{AMPRIL-package}
-\alias{AMPRIL}
 \alias{AMPRIL-package}
+\alias{AMPRIL}
 \title{methods for the AMPRIL population}
 \description{
 ...
@@ -11,4 +11,3 @@
 \author{
 Jonas Klasen
 }
-

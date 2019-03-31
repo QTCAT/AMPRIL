@@ -14,4 +14,3 @@ het.freq(x, dim = c(1, 2))
 \description{
 Heterozygosity
 }
-

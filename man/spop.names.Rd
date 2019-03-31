@@ -12,4 +12,3 @@ spop.names(names)
 \description{
 ...
 }
-

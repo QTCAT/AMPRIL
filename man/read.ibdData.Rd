@@ -5,7 +5,8 @@
 \title{read snp data as ibdData object}
 \usage{
 read.ibdData(file, header = TRUE, sep = " ", quote = "\\"",
-  row.names = FALSE, position.ncol = 3L, na.strings = "NA", nrows = -1)
+  row.names = FALSE, position.ncol = 3L, na.strings = "NA",
+  nrows = -1)
 }
 \arguments{
 \item{file}{the name of the file which the data are to be read from.}
@@ -33,4 +34,3 @@ as NA values.}
 \description{
 read snp data as ibdData object
 }
-

@@ -12,4 +12,3 @@ na.freq(object)
 \description{
 Frequency of NAs in ibdData
 }
-

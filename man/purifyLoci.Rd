@@ -12,4 +12,3 @@ purifyLoci(x)
 \description{
 Purify loci
 }
-

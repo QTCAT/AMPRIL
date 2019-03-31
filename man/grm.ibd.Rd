@@ -12,4 +12,3 @@ grm.ibd(x)
 \description{
 IBD similarity
 }
-

@@ -12,4 +12,3 @@ allele.freq(x)
 \description{
 Allele frequency
 }
-

@@ -12,4 +12,3 @@ getPos(object)
 \description{
 Get position from ibdData
 }
-
